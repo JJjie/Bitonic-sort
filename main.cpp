@@ -8,12 +8,14 @@
 
 #include <iostream>
 #include "bitonic.hpp"
+#include "C_Time.hpp"
 using namespace std;
 
 int main(int argc, char *argv[])
 {
     int N,M;//要排序的元素的个数/段数/参与算法的实际长度
     int i=0,flag=0;//工具变量
+    
     
     cout << "请输入需要排序的元素的个数：" << endl;
     cin >> N ;
@@ -38,7 +40,7 @@ int main(int argc, char *argv[])
     for (i=0; i<M+1; i++)
         cin >> seg_start[i];
     
-//    检验输入的值
+    //    检验输入的值
     for (i=0; i<N-1; i++)
         if (seg_id[i] > seg_id[i+1] )
             flag = 1;
@@ -49,6 +51,7 @@ int main(int argc, char *argv[])
         flag = 2;
     
     if (!flag) {
+        CTimer t;
         segmentedBitonicSort(data, seg_id, seg_start, N, M);
         cout<<"输入正确，排序结果是："<<endl;
         for (i = 0; i < N; i++)
